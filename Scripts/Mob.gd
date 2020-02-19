@@ -9,9 +9,5 @@ func _ready():
 	$AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
 
 
-func _process(delta):
-	pass
-
-
 func _onVisibility_screen_exited():
 	queue_free()
