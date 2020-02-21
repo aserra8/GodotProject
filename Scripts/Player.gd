@@ -32,10 +32,13 @@ func _process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	
-	if velocity.x < 0:
-		$AnimatedSprite.flip_h = true
-	else:
-		$AnimatedSprite.flip_h = false
+	if velocity.x != 0:
+		$AnimatedSprite.animation = "right"
+		$AnimatedSprite.flip_v = false
+		$AnimatedSprite.flip_h = velocity.x < 0
+	elif velocity.y != 0:
+		$AnimatedSprite.animation = "up"
+		$AnimatedSprite.flip_v = velocity.y > 0
 		
 		
 func start(pos):
@@ -44,7 +47,8 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 
-func on_Player_body_entered(body):
+
+func _on_Player_body_entered(body):
 	hide()
 	emit_signal('hit')
-	$CollisionShape2D.set_deferred('disables', true)
+	$CollisionShape2D.set_deferred('disabled', true)

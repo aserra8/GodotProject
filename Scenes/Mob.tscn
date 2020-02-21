@@ -27,8 +27,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 52.3448
-height = -28.616
+radius = 49.5786
+height = 0.89032
 
 [node name="Mob" type="RigidBody2D"]
 position = Vector2( 78.376, 69.4626 )
@@ -44,6 +44,7 @@ __meta__ = {
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 1 )
 animation = "walk"
+playing = true
 __meta__ = {
 "_edit_group_": true
 }
@@ -58,3 +59,4 @@ __meta__ = {
 __meta__ = {
 "_edit_group_": true
 }
+[connection signal="screen_exited" from="Visibility" to="." method="_on_Visibility_screen_exited"]

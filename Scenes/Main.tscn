@@ -19,10 +19,8 @@ position = Vector2( 237.762, 456.886 )
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
-one_shot = true
 
 [node name="ScoreTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -36,9 +34,11 @@ position = Vector2( 8, 1.29236 )
 curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2( 64, 64 )
+position = Vector2( -8.13754, -1.60958 )
+rotation = -0.0043805
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+[connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

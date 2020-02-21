@@ -19,10 +19,11 @@ font_data = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="ScoreLabel" type="Label" parent="."]
-margin_left = 206.54
-margin_top = 14.8019
-margin_right = 251.54
-margin_bottom = 92.8019
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -22.5
+margin_right = 22.5
+margin_bottom = 78.0
 custom_fonts/font = SubResource( 1 )
 text = "0"
 __meta__ = {
@@ -31,10 +32,14 @@ __meta__ = {
 }
 
 [node name="MessageLabel" type="Label" parent="."]
-margin_left = -71.2263
-margin_top = 230.253
-margin_right = 527.774
-margin_bottom = 389.253
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -299.5
+margin_top = -79.5
+margin_right = 299.5
+margin_bottom = 79.5
 custom_fonts/font = SubResource( 2 )
 text = "Dodge the Creeps"
 align = 1
@@ -45,10 +50,13 @@ __meta__ = {
 }
 
 [node name="StartButton" type="Button" parent="."]
-margin_left = 124.477
-margin_top = 568.64
-margin_right = 327.477
-margin_bottom = 666.64
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -101.5
+margin_top = -98.0
+margin_right = 101.5
 custom_fonts/font = SubResource( 3 )
 text = "Start"
 __meta__ = {
