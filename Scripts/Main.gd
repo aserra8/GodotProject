@@ -1,9 +1,10 @@
 extends Node2D
 
 var score
-var coin = 20
+var coinCounter = 0
 export (PackedScene) var Mob
 export (PackedScene) var Boss
+export (PackedScene) var Coin
 
 
 func _ready():
@@ -30,25 +31,30 @@ func _on_StartTimer_timeout():
 
 
 func _on_ScoreTimer_timeout():
-	score += 1
 	$HUD.update_score(score)
-	
-	if (score >= coin):
-		pass
 
 
 func _on_MobTimer_timeout():
 	$MobPath/MobSpawnLocation.set_offset(randi())
 	
 	var mob
+	var coin
 	
 	if (rand_range(0, 1) < 0.8):
 		mob = Mob.instance()
+		score += 1
+		coinCounter += 1
 	else:
 		mob = Boss.instance()
 		score += 2
+		coinCounter += 2
 		
 	add_child(mob)
+	
+	if (coinCounter >= 20):
+		coinCounter = 0
+		coin = Coin.instance()
+		add_child(coin)
 	
 	var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
 	mob.position = $MobPath/MobSpawnLocation.position
