@@ -1,6 +1,9 @@
 extends Area2D
 
 signal hit
+signal coin
+signal speedCoin
+
 var screen_size
 export var speed = 400
 
@@ -8,7 +11,7 @@ export var speed = 400
 func _ready():
 	hide()
 	screen_size = get_viewport_rect().size
-	
+
 	
 func _process(delta):
 	var velocity = Vector2()
@@ -32,7 +35,7 @@ func _process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	
-	if velocity.x != 0:
+	if velocity.x != 0:	
 		$AnimatedSprite.animation = "right"
 		$AnimatedSprite.flip_v = false
 		$AnimatedSprite.flip_h = velocity.x < 0
@@ -47,8 +50,19 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 
-
 func _on_Player_body_entered(body):
-	hide()
-	emit_signal('hit')
-	$CollisionShape2D.set_deferred('disabled', true)
+	if body.get_name() == 'Coin':
+		emit_signal('coin')
+		body.queue_free() 
+	elif body.get_name() == 'SpeedCoin':
+		emit_signal('speedCoin')
+		speed = 600
+		body.queue_free() 
+	else:
+		hide()
+		emit_signal('hit')
+		$CollisionShape2D.set_deferred('disabled', true)
+
+
+func _on_Main_effect():
+	speed = 400
